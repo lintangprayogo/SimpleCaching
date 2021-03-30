@@ -1,9 +1,14 @@
 package com.lintangprayogo.simplecaching.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "restaurants")
 data class Restaurant(
-    val id: Int,
-    val name: String,
-    val logo: String,
-    val type: String,
-    val address: String
+        @PrimaryKey
+        val id: Int,
+        val name: String,
+        val logo: String,
+        val type: String,
+        val address: String
 )

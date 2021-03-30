@@ -1,7 +1,10 @@
 package com.lintangprayogo.simplecaching.di.module
 
+import android.app.Application
+import androidx.room.Room
 import com.lintangprayogo.simplecaching.api.RestaurantApi
 import com.lintangprayogo.simplecaching.api.RestaurantApi.Companion.BASE_URL
+import com.lintangprayogo.simplecaching.db.RestaurantDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,11 +19,15 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit =
-        Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
-            .build()
+            Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
+                    .build()
 
     @Provides
     @Singleton
     fun provideRestaurantApi(retrofit: Retrofit): RestaurantApi =
-        retrofit.create(RestaurantApi::class.java)
+            retrofit.create(RestaurantApi::class.java)
+
+    @Provides
+    fun provideDB(app: Application):
+            RestaurantDatabase = Room.databaseBuilder(app, RestaurantDatabase::class.java, "restaurant_db").build()
 }

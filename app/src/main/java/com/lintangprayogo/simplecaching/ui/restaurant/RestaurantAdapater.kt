@@ -10,11 +10,11 @@ import com.lintangprayogo.simplecaching.databinding.RestaurantItemBinding
 import com.lintangprayogo.simplecaching.model.Restaurant
 
 class RestaurantAdapter :
-    ListAdapter<Restaurant, RestaurantAdapter.RestaurantViewHolder>(RestaurantComparator()) {
+        ListAdapter<Restaurant, RestaurantAdapter.RestaurantViewHolder>(RestaurantComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val binding =
-            RestaurantItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                RestaurantItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RestaurantViewHolder(binding)
     }
 
@@ -26,7 +26,7 @@ class RestaurantAdapter :
     }
 
     class RestaurantViewHolder(private val binding: RestaurantItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+            RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Restaurant) {
             binding.apply {
                 Glide.with(itemView).load(data.logo).into(logo)
